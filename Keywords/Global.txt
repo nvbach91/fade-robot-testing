@@ -1,0 +1,11 @@
+*** Keywords ***
+Open Page
+    [Arguments]    ${url}    ${browser}
+    Open Browser    ${url}    ${browser}
+    Maximize Browser Window
+
+Fade Search
+    [Arguments]    ${keyword}
+    Input Text    ${searchInput}    ${keyword}
+    Click Button    ${searchButton}
+    Wait Until Element Is Visible    css=ol.breadcrumb li.search

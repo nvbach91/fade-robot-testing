@@ -1,0 +1,15 @@
+*** Settings ***
+Library    Selenium2Library
+Resource    ../Settings/Settings.txt
+Resource    ../PageObjects/Elements.txt
+Resource    ../Keywords/Global.txt
+Test Setup    Open Page    ${url}    ${browser}
+Test Teardown    Close Browser
+
+*** Variables ***
+${keyword}    GUESS
+
+*** Test Cases ***
+Fade Search For Keyword
+    Fade Search    ${keyword}
+    Capture Page Screenshot

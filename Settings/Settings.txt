@@ -1,0 +1,4 @@
+*** Variables ***
+${url}    https://www.fade.cz
+${browser}    chrome
+${enterKey}    \\13

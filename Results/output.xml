@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20170323 19:01:58.745" generator="Robot 3.0.1 (Python 2.7.13 on win32)">
+<suite source="d:\Users\ngut19\Desktop\Test\Tests\Smoke_Tests\Google.robot" id="s1" name="Google">
+<test id="s1-t1" name="Invalid Login Test">
+<kw type="setup" name="Open Page" library="Keywords">
+<arguments>
+<arg>${url}</arg>
+<arg>${browser}</arg>
+</arguments>
+<kw name="Open Browser" library="Selenium2Library">
+<doc>Opens a new browser instance to given URL.</doc>
+<arguments>
+<arg>${urlPar}</arg>
+<arg>${browserPar}</arg>
+</arguments>
+<msg timestamp="20170323 19:01:58.918" level="INFO">Opening browser 'ff' to base url 'https://google.com'</msg>
+<status status="PASS" endtime="20170323 19:02:04.614" starttime="20170323 19:01:58.918"></status>
+</kw>
+<kw name="Maximize Browser Window" library="Selenium2Library">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" endtime="20170323 19:02:04.919" starttime="20170323 19:02:04.614"></status>
+</kw>
+<status status="PASS" endtime="20170323 19:02:04.919" starttime="20170323 19:01:58.918"></status>
+</kw>
+<kw name="Google Search" library="Google_Keywords">
+<arguments>
+<arg>${keyword}</arg>
+</arguments>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>${searchInput}</arg>
+<arg>${keyword}</arg>
+</arguments>
+<msg timestamp="20170323 19:02:04.922" level="INFO">Typing text 'VSE' into text field 'id=lst-ib'</msg>
+<status status="PASS" endtime="20170323 19:02:05.079" starttime="20170323 19:02:04.921"></status>
+</kw>
+<kw name="Press Key" library="Selenium2Library">
+<doc>Simulates user pressing key on element identified by `locator`.</doc>
+<arguments>
+<arg>${searchInput}</arg>
+<arg>\\13</arg>
+</arguments>
+<status status="PASS" endtime="20170323 19:02:05.129" starttime="20170323 19:02:05.079"></status>
+</kw>
+<status status="PASS" endtime="20170323 19:02:05.129" starttime="20170323 19:02:04.920"></status>
+</kw>
+<kw name="Capture Page Screenshot" library="Selenium2Library">
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<msg timestamp="20170323 19:02:05.327" html="yes" level="INFO">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-1.png"&gt;&lt;img src="selenium-screenshot-1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" endtime="20170323 19:02:05.328" starttime="20170323 19:02:05.130"></status>
+</kw>
+<kw type="teardown" name="Close Browser" library="Selenium2Library">
+<doc>Closes the current browser.</doc>
+<status status="PASS" endtime="20170323 19:02:05.525" starttime="20170323 19:02:05.328"></status>
+</kw>
+<status status="PASS" endtime="20170323 19:02:05.526" critical="yes" starttime="20170323 19:01:58.918"></status>
+</test>
+<status status="PASS" endtime="20170323 19:02:05.530" starttime="20170323 19:01:58.745"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="0" pass="1">Critical Tests</stat>
+<stat fail="0" pass="1">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat fail="0" id="s1" name="Google" pass="1">Google</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
