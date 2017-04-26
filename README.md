@@ -19,3 +19,6 @@ git clone https://github.com/nvbach91/fade-robot-testing.git
 ```{r, engine='sh'}
 robot .\Tests\TC01.txt
 ```
+
+### Code convention
+* Please use 4 spaces instead of tab when writing code

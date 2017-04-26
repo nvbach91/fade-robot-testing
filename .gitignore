@@ -1,4 +1,4 @@
-.xml
-.png
-.html
-.log
+*.xml
+*.png
+*.html
+*.log
