@@ -1,0 +1,49 @@
+*** Variables ***
+${article1}    xpath=//*[@id="product-0"]/div[1]/div/article[1]/div
+${article1price}    xpath=//*[@id="product-0"]/div[1]/div/article[1]/div/div/div[3]/div[2]/div[1]/span
+${article25}    xpath=//*[@id="product-0"]/div[1]/div/div/article[1]/div
+${bags}    xpath=//*[@id="menub-man"]/ul/li[4]/a
+${bagsbc}    xpath=//*[@id="mainwrapper"]/main/ol/li[3]
+${bagsbctxt}    TA\u0160KY
+${crossbody}    id=cat-254
+${crossbodybc}    xpath=//*[@id="mainwrapper"]/main/ol/li[4]
+${crossbodybctxt}    CROSSBODY
+${czktxt}    K\u010D
+${eurtxt}    \u20AC
+${hodsperk}    xpath=//*[@id="menub-woman"]/ul/li[3]/a
+${hodsperkbc}    xpath=//*[@id="mainwrapper"]/main/ol/li[3]/a
+${hodsperkbctxt}    HODINKY A \u0160PERKY
+${kosile}    xpath=//*[@id="menub-woman"]/ul/li[2]/ul/div[1]/li[4]/a
+${kosilebc}    xpath=//*[@id="mainwrapper"]/main/ol/li[5]
+${kosilebctxt}    KO\u0160ILE
+${kosilebcen}    SHIRTS
+${kosileen}    SHIRTS AND BLOUSES
+${muzbc}    xpath=//*[@id="mainwrapper"]/main/ol/li[2]/a
+${muzbctxt}    MU\u017D
+${naramky}    xpath=//*[@id="menub-woman"]/ul/li[3]/ul/div/li[2]/a
+${naramkybc}    xpath=//*[@id="mainwrapper"]/main/ol/li[5]
+${naramkybctxt}    N\u00C1RAMKY
+${nextpage}    xpath=//*[@id="pagination-2"]/div/div/a
+${nextpagearrow}    xpath=//*[@id="pagination-2"]/div/ul/li[4]/a/i
+${obleceni}    xpath=//*[@id="menub-woman"]/ul/li[2]/a
+${oblecenien}    APPAREL
+${page3}    xpath=//*[@id="pagination-2"]/div/ul/li[3]/a
+${pageloader}    id=fme_layered_container
+${sperkybc}    xpath=//*[@id="mainwrapper"]/main/ol/li[4]/a
+${sperkybctxt}    \u0160PERKY
+${uvodbc}    xpath=//*[@id="mainwrapper"]/main/ol/li[1]/a
+${uvodbctxt}    \u00DAVOD
+${uvodbcen}    HOME
+${zenabc}    xpath=//*[@id="mainwrapper"]/main/ol/li[2]/a
+${zenabctxt}    \u017DENA
+${zenabcen}    WOMAN
+
+
+
+
+
+
+
+
+
+

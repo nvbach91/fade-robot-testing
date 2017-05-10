@@ -1,0 +1,83 @@
+*** Settings ***
+Library    Selenium2Library
+Resource    ../Settings/Settings.txt
+Resource    ../PageObjects/Elements.txt
+Resource    ../PageObjects/Category.txt
+Resource    ../Keywords/Global.txt
+
+*** Variables ***
+
+*** Test Cases ***
+TC2022 Categories
+    Run with browser     Categories    ${url}    @{browsers}
+
+TC2023 Breadcrumbs Display
+    Run with browser     Breadcrumbs Display    ${url}    @{browsers}
+
+#TC2028 Currency Version
+#    Run with browser     Currency Version    ${url}    @{browsers}
+
+TC2029 Language Version
+    Run with browser     Language Version    ${url}    @{browsers}
+
+*** Keywords ***
+Categories
+    [Arguments]    ${url}    ${browser}    ${login}
+    Open Page David    ${url}    ${browser}    ${login}
+    Click Element    ${men}
+    Page Navigation With Element Text Check    ${bags}    ${bagsbc}    ${timeout}    ${bagsbctxt}
+    Page Navigation With Element Text Check    ${crossbody}    ${crossbodybc}    ${timeout}    ${crossbodybctxt}
+    Click Element    ${woman}
+    Mouse Over    ${hodsperk}
+    Element Should Be Visible    ${naramky}
+    Page Navigation With Element Text Check    ${naramky}    ${naramkybc}    ${timeout}    ${naramkybctxt}
+
+
+
+Breadcrumbs Display
+    [Arguments]    ${url}    ${browser}    ${login}
+    Open Page David    ${url}    ${browser}    ${login}
+    Click Element    ${men}
+    Page Navigation With Element Text Check    ${bags}    ${bagsbc}    ${timeout}    ${bagsbctxt}
+    Element Should Contain    ${uvodbc}    ${uvodbctxt}
+    Element Should Contain    ${muzbc}    ${muzbctxt}
+    Page Navigation With Element Text Check    ${crossbody}    ${crossbodybc}    ${timeout}    ${crossbodybctxt}
+    Element Should Contain    ${uvodbc}    ${uvodbctxt}
+    Element Should Contain    ${muzbc}    ${muzbctxt}
+    Element Should Contain    ${bagsbc}    ${bagsbctxt}
+    Click Element    ${woman}
+    Mouse Over    ${hodsperk}
+    Element Should Be Visible    ${naramky}
+    Page Navigation With Element Text Check    ${naramky}    ${naramkybc}    ${timeout}    ${naramkybctxt}
+    Element Should Contain    ${uvodbc}    ${uvodbctxt}
+    Element Should Contain    ${hodsperkbc}    ${hodsperkbctxt}
+    Element Should Contain    ${sperkybc}    ${sperkybctxt}
+
+
+
+
+Currency Version
+    [Arguments]    ${url}    ${browser}    ${login}
+    Open Page David    ${url}    ${browser}    ${login}
+    Mouse Over    ${obleceni}
+    Page Navigation    ${kosile}    ${kosilebc}    ${timeout}
+    Page Navigation    ${czk}    ${czk}[contains(@class, '${active}')]    ${timeout}
+    Element Should Contain    ${article1price}    ${czktxt}
+    Page Navigation    ${eur}    ${eur}[contains(@class, '${active}')]    ${timeout}
+    Element Should Contain    ${article1price}    ${eurtxt}
+    Page Navigation    ${czk}    ${czk}[contains(@class, '${active}')]    ${timeout}
+    Element Should Contain    ${article1price}    ${czktxt}
+
+
+
+
+Language Version
+    [Arguments]    ${url}    ${browser}    ${login}
+    Open Page David    ${url}    ${browser}    ${login}
+    Mouse Over    ${obleceni}
+    Page Navigation    ${kosile}    ${kosilebc}    ${timeout}
+    Page Navigation    ${langen}    ${langen}[contains(@class, '${active}')]    ${timeout}
+    Element Should Contain    ${uvodbc}    ${uvodbcen}
+    Element Should Contain    ${zenabc}    ${zenabcen}
+    Element Should Contain    ${obleceni}    ${oblecenien}
+    Element Should Contain    ${kosilebc}    ${kosilebcen}

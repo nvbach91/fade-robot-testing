@@ -1,0 +1,40 @@
+*** Settings ***
+Library    Selenium2Library
+Library    Collections
+Resource    ../Settings/Settings.txt
+Resource    ../PageObjects/Search_Elements.txt
+Resource    ../PageObjects/Filter_Elements.txt
+Resource    ../Keywords/Global.txt
+Test Setup    Open Page    ${url}    ${browser}
+Test Teardown    Close Browser
+
+*** Variables ***
+${searchTerm}    Svetr
+${brand}    GUESS
+
+*** Test Cases ***
+TC2012 Fade Brand Filter
+    Fade Search Martin    ${searchTerm}
+    Set Brand Filter
+    Control Brand Filter
+    
+*** Keywords ***
+Control Brand Filter
+    ${count}=    Get Product Count
+    :FOR    ${i}    IN RANGE    1    ${count} + 1
+    \    ${name}=    Get Text    xpath=(${searchedProductInfo})[${i}]
+    \    Element Should Contain     ${searchedProductInfo}    ${brand}
+    \    Element Should Contain     ${searchedProductInfo}    ${searchTerm}
+
+Set Brand Filter
+    Click Element    ${brandFilterDropDown}
+    Select Brand
+    Loading Filter
+
+Select Brand
+    Run Keyword If    "${brand}" == "CALVIN KLEIN"    Click Link    ${brandCalvinKlein}
+    ...    ELSE IF    "${brand}" == "GUESS"    Click Link    ${brandGuess}
+    ...    ELSE IF    "${brand}" == "MARCIANO"    Click Link    ${brandMarciano}
+    ...    ELSE IF    "${brand}" == "MICHAEL KORS"    Click Link    ${brandMichaelKors}
+    ...    ELSE IF    "${brand}" == "PATRIZIA PEPE"    Click Link    ${brandPatriziaPepe}
+    ...    ELSE     "${brand}" == "PINKO"    Click Link    ${brandPinko}

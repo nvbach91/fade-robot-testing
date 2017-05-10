@@ -1,0 +1,31 @@
+*** Variables ***
+${addtobasketbtn}    xpath=//*[@id="basketButton"]
+${addtobasketbtnen}    ADD TO BASKET
+${addtobasketbtntxt}    DO KO\u0160\u00CDKU
+${article1}    xpath=//*[@id="product-0"]/div[1]/div/article[1]/div
+${czktxt}    K\u010D
+${eurtxt}    \u20AC
+${footer}    xpath=//*[@id="bottom"]/div/div[1]
+${kosile}    xpath=//*[@id="menub-woman"]/ul/li[2]/ul/div[1]/li[4]/a
+${kosilebc}    xpath=//*[@id="mainwrapper"]/main/ol/li[5]
+${obleceni}    xpath=//*[@id="menub-woman"]/ul/li[2]/a
+${productlevel}    xpath=//*[@id="mainwrapper"]/main/ol/li[6]
+${productname}    xpath=//*[@id="detailInfo"]/div[1]/div[1]/h2
+${productbrand}    xpath=//*[@id="detailInfo"]/div[1]/div[1]/h1/a
+${productbrandimg}    xpath=//*[@id="detailInfo"]/div[2]/div[3]/a/img
+${productcost}    xpath=//*[@id="detailInfo"]/div[2]/div[2]
+${productcolors}    xpath=//*[@id="detailInfo"]/div[4]/div[1]
+${productsizes}    xpath=//*[@id="detailInfo"]/div[4]/div[2]
+${productavailability}    id=availability
+${productdescription}    xpath=//*[@id="accordion"]/div/div[1]/a
+${productdelivery}    xpath=//*[@id="accordion"]/div/div[3]/a
+${productdetails}    id=pDesc
+${productsize2}    xpath=//*[@id="size"]/li[2]/a
+${recommended}    xpath=//*[@id="sub-menu"]/ul/li/a
+${recommended1}    xpath=//*[@id="product-0"]/div/div/article[1]/div/div
+${recommended2}    xpath=//*[@id="product-0"]/div/div/article[2]/div/div
+${scrolltotop}    xpath=//*[@id="top"]/div/a
+${search}    Hledat
+${reservebuttontxt}    Rezervovat
+${zoomcontainer}    xpath=/html/body/div[4]
+${zoomwindow}    xpath=/html/body/div[4]/div[2]/div

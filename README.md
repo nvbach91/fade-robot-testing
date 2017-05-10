@@ -22,3 +22,14 @@ robot .\Tests\TC01.txt
 
 ### Code convention
 * Please use 4 spaces instead of tab when writing code
+
+
+### Ignore images for faster testing
+* modify file ```~\Python27\Lib\site-packages\selenium\webdriver\chrome\options.py``` on line 31
+```
+self._experimental_options = {
+    "prefs" : {
+        "profile.managed_default_content_settings.images": 2
+    }
+}
+```

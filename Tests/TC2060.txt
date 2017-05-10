@@ -1,0 +1,27 @@
+*** Settings ***
+Library    Selenium2Library
+Resource    ../Settings/Settings.txt
+Resource    ../PageObjects/Search_Elements.txt
+Resource    ../PageObjects/ProductDet.txt
+Resource    ../Keywords/Global.txt
+Test Setup    Open Page    ${url}    ${browser}
+Test Teardown    Close Browser
+
+*** Variables ***
+${searchTerm}    kabelka
+${productLink}   https://www.fade.cz/woman/kabelky/v-tsi-kabelky/bobbi-shopper
+${size}    T/U   
+
+*** Test Cases ***
+TC2060 Shipping and payment type
+    Add To Cart    ${searchTerm}    ${productLink}    ${size}
+    Wait Until Element Is Not Visible    osc-loader
+    Click Element    xpath=//label[@for='s_method_flatrate2_flatrate2']
+    Page Should Contain Element   p_method_msp_cashondelivery
+    Page Should Contain Element   p_method_cspaybinder
+    Wait Until Element Is Not Visible    osc-loader
+    Click Element    xpath=//label[@for='p_method_msp_cashondelivery']
+    Wait Until Element Is Not Visible    osc-loader
+    Get Element Attribute    xpath=//input[@value='msp_cashondelivery']@data-smartlook_2fecb6293ed16
+    Get Element Attribute    xpath=//input[@value='cspaybinder']@data-smartlook_2fecb6293ed16
+    Click Element    xpath=//label[@for='p_method_cspaybinder']

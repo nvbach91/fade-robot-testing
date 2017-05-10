@@ -1,0 +1,47 @@
+*** Settings ***
+Library    Selenium2Library
+Library    Collections
+Resource    ../Settings/Settings.txt
+Resource    ../PageObjects/Search_Elements.txt
+Resource    ../PageObjects/Filter_Elements.txt
+Resource    ../Keywords/Global.txt
+Test Setup    Open Page    ${url}    ${browser}
+Test Teardown    Close Browser
+
+*** Variables ***
+${searchTerm}    Svetr
+${size}    M
+
+*** Test Cases ***
+TC2014 Fade Size Filter
+    Fade Search Martin    ${searchTerm}
+    Set Size Filter
+    Control Size Filter
+
+*** Keywords ***
+Set Size Filter
+    Click Element    ${sizeFilterDropDown}
+    Select Size
+    Loading Filter
+
+Control Size Filter
+    ${count}=    Get Product Count
+    :FOR    ${i}    IN RANGE    1    ${count} + 1
+    \    Mouse Over    xpath=(${searchedProductInfo})[${i}]
+    \    ${sizeCount}=    Get Matching Xpath Count    //article[@class="product"][${i}]//li
+    \    Control Product Size    ${sizeCount}    ${i}
+Control Product Size 
+    [Arguments]    ${count}    ${l}
+    ${sizes}=    Create List
+    :FOR    ${i}    IN RANGE    1    ${count} + 1
+    \    Mouse Over    xpath=(${searchedProductInfo})[${l}]
+    \    ${sizeValue}=    Get Text    xpath=(//article[@class="product"][${l}]//li)[${i}]
+    \    Append To List    ${sizes}    ${sizeValue}
+    Should Contain    ${sizes}    ${sizeValue}
+
+Select Size
+    Run Keyword If    "${size}" == "XS"    Click Link    ${xsSize}
+    ...    ELSE IF    "${size}" == "S"    Click Link    ${sSize}
+    ...    ELSE IF    "${size}" == "M"    Click Link    ${mSize}
+    ...    ELSE IF    "${size}" == "L"    Click Link    ${lSize}
+    ...    ELSE     "${size}" == "XL"    Click Link    ${xlSize}

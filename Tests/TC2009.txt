@@ -1,0 +1,20 @@
+*** Settings ***
+Library    Selenium2Library
+Resource    ../Settings/Settings.txt
+Resource    ../PageObjects/Search_Elements.txt
+Resource    ../Keywords/Global.txt
+Test Setup    Open Page    ${url}    ${browser}
+Test Teardown    Close Browser
+
+*** Variables ***
+${searchTerm}    Svetr
+
+*** Test Cases ***
+TC2009 Fade Search For Keyword
+    Fade Search Martin    ${searchTerm}
+    Control Search Result
+
+*** Keywords ***
+Control Search Result
+    :FOR    ${i}    IN RANGE    1    ${maxPageProducts} + 1
+    \    Element Should Contain    ${searchedProductInfo}    ${searchTerm}

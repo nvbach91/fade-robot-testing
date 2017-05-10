@@ -1,0 +1,26 @@
+*** Variables ***
+${brandFilterDropdown}    //*[@id="filter"]/div[1]/div/div/button
+${brandCalvinKlein}    //*[@id="znacka-738"]
+${brandGuess}    //*[@id="znacka-376"]
+${brandMarciano}    //*[@id="znacka-441"]
+${brandMichaelKors}    //*[@id="znacka-384"]
+${brandPatriziaPepe}    //*[@id="znacka-387"]
+${brandPinko}    //*[@id="znacka-2007"]
+
+${categoryFilterDropdown}    //*[@id="filter"]/div[2]/div/div/button
+${categoryFilterScarf}    //*[@id="kategorie-701"]
+${categoryFilterJacket}    //*[@id="kategorie-672"]
+${categoryFilterDress}    //*[@id="kategorie-661"]
+${categoryFilterSweater}    //*[@id="kategorie-669"]
+${categoryFilterTop}    //*[@id="kategorie-670"]
+${categoryFilterTShirt }    //*[@id="kategorie-666"]
+
+${sizeFilterDropdown}    //*[@id="filter"]/div[3]/div/div/button
+${xsSize}    //*[@id="velikost-378"]
+${sSize}    //*[@id="velikost-409"]
+${mSize}    //*[@id="velikost-408"]
+${lSize}    //*[@id="velikost-448"]
+${xlSize}    //*[@id="velikost-449"]
+
+${clearCategoryFilter}    //*[@id="kategorie-clear"]
+${loadingFilter}    //div[@class="fme_loading_filters osc-loader"]

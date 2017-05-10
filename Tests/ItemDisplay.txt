@@ -1,0 +1,67 @@
+*** Settings ***
+Library    Selenium2Library
+Resource    ../Settings/Settings.txt
+Resource    ../PageObjects/Elements.txt
+Resource    ../PageObjects/Category.txt
+Resource    ../Keywords/Global.txt
+Test Teardown    Close all Browsers
+
+*** Test Cases ***
+TC2024 Up To 24 Items
+    Run with browser     Up To 24 Items    ${url}    @{browsers}
+
+TC2025 Display 24 More Items Using More
+    Run with browser     Display 24 More Items Using More    ${url}    @{browsers}
+
+TC2025 Display 24 More Items Using Arrow
+    Run with browser     Display 24 More Items Using Arrow    ${url}    @{browsers}
+
+TC2026 Go To Page 3
+    Run with browser     Go To Page 3    ${url}    @{browsers}
+
+*** Keywords ***
+Up To 24 Items
+    [Arguments]    ${url}    ${browser}    ${login}
+    Open Page David    ${url}    ${browser}    ${login}
+    Click Element    ${woman}
+    Mouse Over    ${obleceni}
+    Element Should Be Visible    ${kosile}
+    Page Navigation With Element Text Check    ${kosile}    ${kosilebc}    ${timeout}    ${kosilebctxt}
+    Mouse Over    ${article1}
+    Page Should Not Contain Element    ${article25}
+
+Display 24 More Items Using More
+    [Arguments]    ${url}    ${browser}    ${login}
+    Open Page David    ${url}    ${browser}    ${login}
+    Click Element    ${woman}
+    Mouse Over    ${obleceni}
+    Element Should Be Visible    ${kosile}
+    Page Navigation With Element Text Check    ${kosile}    ${kosilebc}    ${timeout}    ${kosilebctxt}
+    Mouse Over    ${article1}
+    Page Should Not Contain Element    ${article25}
+    Page Navigation    ${nextpage}    ${article25}    ${timeout}
+    Element Should Be Visible    ${article25}
+
+Display 24 More Items Using Arrow
+    [Arguments]    ${url}    ${browser}    ${login}
+    Open Page David    ${url}    ${browser}    ${login}
+    Click Element    ${woman}
+    Mouse Over    ${obleceni}
+    Element Should Be Visible    ${kosile}
+    Page Navigation With Element Text Check    ${kosile}    ${kosilebc}    ${timeout}    ${kosilebctxt}
+    Mouse Over    ${article1}
+    Page Should Not Contain Element    ${article25}
+    Page Navigation    ${nextpagearrow}    ${article25}    ${timeout}
+    Element Should Be Visible    ${article25}
+
+Go To Page 3
+    [Arguments]    ${url}    ${browser}    ${login}
+    Open Page David    ${url}    ${browser}    ${login}
+    Click Element    ${woman}
+    Mouse Over    ${obleceni}
+    Element Should Be Visible    ${kosile}
+    Page Navigation With Element Text Check    ${kosile}    ${kosilebc}    ${timeout}    ${kosilebctxt}
+    Mouse Over    ${article1}
+    Page Should Not Contain Element    ${article25}
+    Page Navigation    ${page3}    ${article25}    ${timeout}
+    Element Should Be Visible    ${article25}

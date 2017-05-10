@@ -1,0 +1,19 @@
+*** Settings ***
+Library    Selenium2Library
+Resource    ../Settings/Settings.txt
+Resource    ../PageObjects/Search_Elements.txt
+Resource    ../PageObjects/ProductDet.txt
+Resource    ../Keywords/Global.txt
+Test Setup    Open Page    ${url}    ${browser}
+Test Teardown    Close Browser
+
+*** Variables ***
+${searchTerm}    kabelka
+${productLink}   https://www.fade.cz/woman/kabelky/v-tsi-kabelky/bobbi-shopper
+${size}    T/U   
+
+*** Test Cases ***
+TC2059 Adding to Cart
+    Add To Cart    ${searchTerm}    ${productLink}    ${size}
+    Page Should Contain Element    basket
+    Page Should Contain Link    ${productLink}

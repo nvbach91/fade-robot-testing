@@ -1,4 +1,11 @@
 *** Variables ***
 ${url}    https://www.fade.cz
+@{browsers}    chrome
 ${browser}    chrome
 ${enterKey}    \\13
+${maxPageProducts}    24
+@{loginAtStart}    false    true
+${res}    true
+${width}    1920
+${height}     1080
+@{resolutions}  width1   height1   width2   height2

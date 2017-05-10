@@ -1,3 +1,24 @@
 *** Variables ***
+${active}    active
+${cookiebar}    id=mntsinfotech-cookie-bar
+${cookiebarclose}    id=mntsinfotechCookie
+${czk}    xpath=//*[@id="mainwrapper"]/div[1]/nav/div[2]/a[1]
+${eur}    xpath=//*[@id="mainwrapper"]/div[1]/nav/div[2]/a[2]
+${langcs}    xpath=//*[@id="mainwrapper"]/div[1]/nav/div[1]/a[1]
+${langen}    xpath=//*[@id="mainwrapper"]/div[1]/nav/div[1]/a[2]
+${lben}    LOGIN
+${lbcz}    P\u0158IHL\u00C1SIT SE
+${loginbutton}    xpath=//*[@id="menu"]/ul/li[1]/a
+${longtimeout}    15
+${maxtimeout}    30
+${men}    id=men
+${name}    dawid000@email.cz
+${pass}    fadetest
 ${searchInput}    id=search
 ${searchButton}    id=basic-search
+${timeout}    5
+${woman}    id=woman
+${mailinput}    id=youama-email
+${passinput}    id=youama-password
+${signin}    xpath=//*[@id="header-account"]/div[1]/div/div/div[3]/div/button[1]
+${lblogged}    DAVID SEDL\u00C1\u010CEK

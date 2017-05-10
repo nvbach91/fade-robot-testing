@@ -1,0 +1,113 @@
+*** Settings ***
+Library    Selenium2Library
+Resource    ../Settings/Settings.txt
+Resource    ../PageObjects/Elements.txt
+Resource    ../PageObjects/ProductDet.txt
+Resource    ../Keywords/Global.txt
+Test Teardown    Close All Browsers
+
+*** Variables ***
+
+*** Test Cases ***
+TC2030 Product detail
+    Run with browser     Product detail    ${url}    @{browsers}
+
+TC2036 Pricetag Currency Version
+    Run with browser     Pricetag Currency Version    ${url}    @{browsers}
+
+TC2039 Recommended
+    Run with browser     Recommended    ${url}    @{browsers}
+
+TC2040 Product Language Version
+    Run with browser     Product Language Version    ${url}    @{browsers}
+
+TC2068 Back To Top Arrow
+    Run with browser     Back To Top Arrow    ${url}    @{browsers}
+
+
+*** Keywords ***
+Product detail
+    [Arguments]    ${url}    ${browser}    ${login}
+    Open Page David    ${url}    ${browser}    ${login}
+    Mouse Over    ${obleceni}
+    Page Navigation     ${kosile}    ${kosilebc}    ${timeout}
+    Click Element    ${article1}
+    Wait Until Page Contains Element    ${productlevel}[contains(@class, '${active}')]    ${timeout}
+    Element Should Not Be Visible    ${productdetails}
+    Element Should Be Visible    ${productdescription}
+    Element Toggle On    ${productdescription}    ${productdetails}    ${timeout}
+    Element Should Be Visible    ${addtobasketbtn}
+    Element Should Be Visible    ${productlevel}
+    Element Should Be Visible    ${productname}
+    Element Should Be Visible    ${productbrand}
+    Element Should Be Visible    ${productbrandimg}
+    Element Should Be Visible    ${productcost}
+    Element Should Be Visible    ${productcolors}
+    Element Should Be Visible    ${productsizes}
+    Element Should Be Visible    ${productavailability}
+    Element Should Be Visible    ${productdelivery}
+    Click Element    ${productsize2}
+    Element Toggle Off    ${productdescription}    ${productdetails}    ${timeout}
+    Click Element    ${productavailability} 
+    Wait Until Page Contains    ${reservebuttontxt}    ${timeout}
+
+
+
+
+Pricetag Currency Version
+    [Arguments]    ${url}    ${browser}    ${login}
+    Open Page David    ${url}    ${browser}    ${login}
+    Mouse Over    ${obleceni}
+    Page Navigation    ${kosile}    ${kosilebc}    ${timeout}
+    Click Element    ${article1}
+    Wait Until Page Contains Element    ${productlevel}[contains(@class, '${active}')]    ${timeout}
+    Click Element    ${eur}
+    Wait Until Page Contains Element    ${eur}[contains(@class, '${active}')]    ${timeout}
+    Wait Until Element contains    ${productcost}    ${eurtxt}    ${timeout}
+    Click Element    ${czk}
+    Wait Until Page Contains Element    ${czk}[contains(@class, '${active}')]    ${timeout}
+    Wait Until Element contains    ${productcost}    ${czktxt}    ${timeout}
+
+
+
+
+Recommended
+    [Arguments]    ${url}    ${browser}    ${login}
+    Open Page David    ${url}    ${browser}    ${login}
+    Mouse Over    ${obleceni}
+    Page Navigation    ${kosile}    ${kosilebc}    ${timeout}
+    Page Navigation    ${article1}    ${recommended}    ${timeout}
+    Element Should Be Visible    ${recommended1}
+    Element Should Be Visible    ${recommended2}
+
+
+
+
+Product Language Version
+    [Arguments]    ${url}    ${browser}    ${login}
+    Open Page David    ${url}    ${browser}    ${login}
+    Mouse Over    ${obleceni}
+    Page Navigation    ${kosile}    ${kosilebc}    ${timeout}
+    Click Element    ${article1}
+    Wait Until Page Contains Element    ${productlevel}[contains(@class, '${active}')]    ${timeout}
+    Element Should Contain    ${addtobasketbtn}    ${addtobasketbtntxt}
+    Click Element    ${langen}
+    Click Element    ${langen}
+    Wait Until Page Contains Element    ${langen}[contains(@class, '${active}')]    ${timeout}
+    Wait Until Element Contains    ${addtobasketbtn}    ${addtobasketbtnen}    ${timeout}
+    Click Element    ${langcs}
+    Wait Until Page Contains Element    ${langcs}[contains(@class, '${active}')]    ${timeout}
+    Wait Until Element Contains    ${addtobasketbtn}    ${addtobasketbtntxt}    ${timeout}
+
+
+
+
+Back To Top Arrow
+    [Arguments]    ${url}    ${ibrowser}    ${ilogin}
+    Open Page David    ${url}    ${ibrowser}    ${ilogin}
+    Mouse Over    ${obleceni}
+    Page Navigation    ${kosile}    ${kosilebc}    ${timeout}
+    Click Element    ${article1}
+    Wait Until Page Contains Element    ${productlevel}[contains(@class, '${active}')]    ${timeout}
+    Mouse Over    ${footer}
+    Wait Until Element Is Visible    ${scrolltotop}    ${timeout}

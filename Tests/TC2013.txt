@@ -1,0 +1,50 @@
+﻿*** Settings ***
+Library    Selenium2Library
+Library    Collections
+Resource    ../Settings/Settings.txt
+Resource    ../PageObjects/Search_Elements.txt
+Resource    ../PageObjects/Filter_Elements.txt
+Resource    ../Keywords/Global.txt
+Test Setup    Open Page    ${url}    ${browser}
+Test Teardown    Close Browser
+
+*** Variables ***
+${searchTerm}    Marciano
+${category}    Šály
+
+*** Test Cases ***
+TC2013 Fade Category Filter
+    Fade Search    ${searchTerm}
+    Set Filter
+    Control Category Filter
+
+*** Keywords ***  
+Set Filter
+    Click Element    ${categoryFilterDropDown}
+    Select Category
+    Loading Filter
+
+Control Category Filter
+    ${filter}=    Singularize    ${category}
+    ${count}=    Get Product Count
+    :FOR    ${i}    IN RANGE    1    ${count} + 1
+    \    ${name}=    Get Text    xpath=(${searchedProductInfo})[${i}]
+    \    Element Should Contain     ${searchedProductInfo}    ${filter}
+
+Select Category
+    Run Keyword If    "${category}" == "Šály"    Click Link    ${categoryFilterScarf}
+    ...    ELSE IF    "${category}" == "Saka"    Click Link    ${categoryFilterJacket}
+    ...    ELSE IF    "${category}" == "Šaty"    Click Link    ${categoryFilterDress}
+    ...    ELSE IF    "${category}" == "Svetry"    Click Link    ${categoryFilterSweater}
+    ...    ELSE IF    "${category}" == "Topy"    Click Link    ${categoryFilterTop}
+    ...    ELSE     "${category}" == "Trika"    Click Link    ${categoryFilterTShirt}    
+
+Singularize
+   [Arguments]    ${filter}
+    ${category}=    Set Variable If    
+    ...             "${filter}" == "Šály"    Šála
+    ...             "${filter}" == "Saka"    Sako
+    ...             "${filter}" == "Svetry"    Svetr
+    ...             "${filter}" == "Topy"    Top
+    ...             "${filter}" == "Trika"    Triko
+    [return]    ${category}

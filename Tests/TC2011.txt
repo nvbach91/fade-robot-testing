@@ -1,15 +1,15 @@
 *** Settings ***
 Library    Selenium2Library
 Resource    ../Settings/Settings.txt
-Resource    ../PageObjects/Elements.txt
+Resource    ../PageObjects/Search_Elements.txt
 Resource    ../Keywords/Global.txt
 Test Setup    Open Page    ${url}    ${browser}
 Test Teardown    Close Browser
 
 *** Variables ***
-${keyword}    GUESS
+${searchTerm}    Svetr
 
 *** Test Cases ***
-Fade Search For Keyword
-    Fade Search    ${keyword}
-    Capture Page Screenshot
+TC2011 Products On Page After Searching
+    Fade Search Martin    ${searchTerm}
+    Max Products On Page

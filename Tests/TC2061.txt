@@ -1,0 +1,26 @@
+*** Settings ***
+Library    Selenium2Library
+Resource    ../Settings/Settings.txt
+Resource    ../PageObjects/Search_Elements.txt
+Resource    ../Keywords/Global.txt
+Test Setup    Open Page    ${url}    ${browser}
+Test Teardown    Close Browser
+
+*** Variables ***
+${searchTerm}    kabelka
+${productLink}   https://www.fade.cz/woman/kabelky/v-tsi-kabelky/bobbi-shopper
+${size}    T/U   
+
+*** Test Cases ***
+TC2061 Login from Cart
+    Add To Cart    ${searchTerm}    ${productLink}    ${size}
+    Wait Until Element Is Not Visible    osc-loader
+    Click Element    xpath=//label[@for='s_method_flatrate5_flatrate5']
+    Wait Until Element Is Not Visible    osc-loader
+    Click Element    xpath=//label[@for='p_method_msp_cashondelivery']
+    Wait Until Element Is Not Visible    osc-loader
+    Click Element    loginFrmDlgO
+    Wait Until Element Is Visible    loginFrm
+    Login From Cart
+    Wait Until Element Is Visible    billing-address-select
+    Page Should Contain Element    billing-address-select    

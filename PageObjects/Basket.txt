@@ -1,0 +1,21 @@
+*** Variables ***
+${categoryPageUrlToBeUsed}    https://www.fade.cz/woman/hodinky-a-sperky
+${pageTitleCss}    css=main.container > h1
+${pageTitle}    HODINKY
+${productContainerCss}   css=#product-0
+${firstItemCss}    css=article.product:first-child .product-inner
+${itenQuantityInputCss}    css=input#count
+${addToBasketButtonCss}    css=a#basketButton
+${notificationBarCss}    css=#notification
+${miniCartCountCss}    css=#countQ
+${basketUrl}    https://www.fade.cz/onestepcheckout
+${basketContainerCss}    css=#basket
+${itemQuantityInBasketCss}    ${basketContainerCss} > tbody > tr:first-child > td:nth-child(3) > span:first-child
+${cartCss}    css=#cart
+${miniCartSummaryCss}    css=#mini-cart-summary
+${firstRemoveButtonInMiniCartCss}    ${miniCartSummaryCss} > li:first-child a.remove-btn span
+${firstReduceQuantityButtonInMiniCartCss}    ${miniCartSummaryCss} > li:first-child button.minus
+${firstInputQuantityInMiniCartCss}    ${miniCartSummaryCss} > li:first-child input.input-text.qty
+${curtainCss}    css=#load_animate
+${miniCartTotalCss}    css=#mini-cart-total
+${itemUnitPriceCss}    css=#detailInfo .price

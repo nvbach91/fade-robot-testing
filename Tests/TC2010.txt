@@ -1,0 +1,17 @@
+*** Settings ***
+Library    Selenium2Library
+Resource    ../Settings/Settings.txt
+Resource    ../PageObjects/Search_Elements.txt
+Resource    ../Keywords/Global.txt
+Test Setup    Open Page    ${url}    ${browser}
+Test Teardown    Close Browser
+
+*** Variables ***
+${searchTerm}    Sve
+
+*** Test Cases ***
+TC2010 Search Autocomplete Test
+    Input Text    ${searchInput}    ${searchTerm}
+
+    Wait Until Element Is Visible    ${searchAutocomplete}
+    Element Should Contain    ${searchAutocomplete}    ${searchTerm}

@@ -1,0 +1,7 @@
+*** Variables ***
+${searchInput}    id=search
+
+${searchButton}    id=basic-search
+${searchedProduct}    //div[@class='prdct']
+${searchedProductInfo}    //div[@class='product-info']
+${searchAutocomplete}    id=search-result

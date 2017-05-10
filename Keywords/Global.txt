@@ -3,9 +3,147 @@ Open Page
     [Arguments]    ${url}    ${browser}
     Open Browser    ${url}    ${browser}
     Maximize Browser Window
+    Click Element   id=mntsinfotechCookie
 
+Open Page David
+    [Arguments]    ${url}    ${browser}    ${login}
+    Open Browser    ${url}    ${browser}
+    Run Keyword If    '${res}' == 'true'    Maximize Browser Window
+    Run Keyword If    '${res}' == 'false'    Maximize Browser Window
+    ${presentcb}=    Run Keyword And Return Status    Element Should Be Visible    ${cookiebar}
+    Run Keyword If    ${presentcb}    Click Element    ${cookiebarclose}
+    Run Keyword If    '${login}' == 'true'    Login    ${name}    ${pass}
+    
 Fade Search
     [Arguments]    ${keyword}
     Input Text    ${searchInput}    ${keyword}
     Click Button    ${searchButton}
     Wait Until Element Is Visible    css=ol.breadcrumb li.search
+
+Fade Search Martin
+    [Arguments]    ${keyword}    
+    Input Text    ${searchInput}    ${keyword}    
+    Click Button    ${searchButton}    
+    Wait Until Element Is Visible    ${searchedProduct}	timeout=5
+
+Fade Search David
+    [Arguments]    ${keyword}
+    Input Text    ${searchInput}    ${keyword}
+    Click Button    ${searchButton}
+    Wait Until Element Is Visible    css=ol.breadcrumb li.search
+
+Max Products On Page
+    Xpath Should Match X Times    ${searchedProduct}    ${maxPageProducts}
+
+Loading Filter
+    Wait Until Element Is Not Visible    ${loadingFilter}	timeout=5
+
+Get Product Count
+    ${count}=    Get Matching Xpath Count    ${searchedProduct}
+    [return]    ${count}
+    
+Run with browser
+    [Arguments]    ${keyword}     ${url}    @{browsers}
+    :FOR    ${browser}    IN     @{browsers}
+    \      Run Keyword and continue on failure    Run with login   ${keyword}    ${url}    ${browser}    @{loginAtStart}
+
+Run with login
+    [Arguments]    ${keyword}     ${url}    ${browser}    @{loginAtStart}
+    :FOR    ${bool}    IN     @{loginAtStart}
+    \      Run Keyword and continue on failure   ${keyword}    ${url}    ${browser}    ${bool}
+    \      Close Browser
+
+Run with resolutions
+#TOBEDONE
+
+Page Navigation
+    [Arguments]    ${element}    ${element2check}    ${timeout}
+    Click Element    ${element}
+    Wait Until Page Contains Element    ${element2check}    ${timeout}
+
+
+Page Navigation With Element Text Check
+    [Arguments]    ${element}    ${element2check}    ${timeout}    ${text}
+    Click Element    ${element}
+    Wait Until Page Contains Element    ${element2check}    ${timeout}
+    Element Should Contain    ${element2check}    ${text}
+
+
+Element Toggle On
+    [Arguments]    ${control}    ${effect}    ${timeout}
+    Click Element    ${control}
+    Wait Until Element Is Visible    ${effect}    ${timeout}
+
+
+Element Toggle Off
+    [Arguments]    ${control}    ${effect}    ${timeout}
+    Click Element    ${control}
+    Wait Until Element Is Not Visible    ${effect}    ${timeout}
+
+
+Login
+    [Arguments]    ${name}    ${pass}
+    Click Element    ${loginbutton}
+    Wait Until Element Is Visible    ${signin}    ${timeout}
+    Input Password    ${passinput}    ${pass}
+    Input Text    ${mailinput}    ${name}
+    Click Element    ${signin}
+    Sleep    3
+    Wait Until Element Contains    ${loginbutton}    ${lblogged}    ${timeout}
+    
+Add To Cart
+    [Arguments]    ${searchTerm}    ${productLink}    ${size}
+    Fade Search    ${searchTerm}
+    Click Link     ${productLink}
+    Click Link  ${size}
+    Click Element   id=basketButton
+    Wait Until Element Is Visible    id=note
+    Wait Until Element Is Not Visible    id=note
+    Mouse Over     cart
+    Wait Until Element Is Visible     minicartfooterid
+    Mouse Over     minicartfooterid
+    Click Link     https://www.fade.cz/onestepcheckout/
+    
+Login From Cart
+    Input Text    login-email    zziggy@seznam.cz
+    Input Password    login-password    Heslo123
+    Click Element    xpath=//button/span
+
+###############################################################################
+######################### SECTION OF NGUYEN VIET BACH #########################
+###############################################################################
+Add A Number Of Items To Basket
+    [Arguments]    ${inputQuantity}
+    Go To    ${categoryPageUrlToBeUsed}
+    Wait Until Element Is Visible    ${productContainerCss}
+    Element Should Contain    ${pageTitleCss}    ${pageTitle}
+    Click Element    ${firstItemCss}
+    Wait Until Element Is Visible    ${itenQuantityInputCss}
+    Input Text    ${itenQuantityInputCss}    ${inputQuantity}
+    ${q} =    Get Value    ${itenQuantityInputCss}
+    Should Be Equal    ${q}    ${inputQuantity}    Quantity input works properly
+    Click Element    ${addToBasketButtonCss}
+    Wait Until Element Is Visible    ${notificationBarCss}
+
+Verify Basket Content
+    [Arguments]    ${expectedBasketQuantity}
+    Element Text Should Be    ${miniCartCountCss}    ${expectedBasketQuantity}
+    Run Keyword If    '${expectedBasketQuantity}' != ''
+    ...    Run Keywords
+#    ...    ${itemUnitPrice}=    Get Text    ${itemUnitPriceCss}
+#    ...    AND    ${itemUnitPrice}=    Replace String Using Regexp    ${itemUnitPrice}    [^\\d]   ${EMPTY}
+#    ...    AND    ${miniCartTotal}=    Get Text    ${miniCartTotalCss}
+#    ...    AND    ${miniCartTotal}=    Replace String Using Regexp    ${miniCartTotal}    [^\\d]   ${EMPTY}
+#    ...    AND    ${intendedTotalPrice}=    Evaluate    str(int($expectedBasketQuantity) * int($itemUnitPrice))
+#    ...    AND    Should Be Equal    ${miniCartTotal}    ${intendedTotalPrice}
+    ...    Go To    ${basketUrl}
+    ...    AND    Wait Until Element Is Visible    ${basketContainerCss}
+    ...    AND    Element Text Should Be    ${itemQuantityInBasketCss}    ${expectedBasketQuantity}
+
+Open Mini Cart Summary
+    Wait Until Element Is Not Visible    ${notificationBarCss}
+    Mouse Over    ${cartCss}
+    Click Element    ${cartCss}
+    Sleep    0.5    Waiting for mini cart remove button to be clickable
+    Wait Until Element Is Visible    ${miniCartSummaryCss}
+    Wait Until Element Is Visible    ${firstRemoveButtonInMiniCartCss}

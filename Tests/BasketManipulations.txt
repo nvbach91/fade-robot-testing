@@ -1,0 +1,53 @@
+*** Settings ***
+Library    Selenium2Library
+Library    String
+Resource    ../Settings/Settings.txt
+Resource    ../PageObjects/Basket.txt
+Resource    ../Keywords/Global.txt
+Test Setup    Open Page    ${categoryPageUrlToBeUsed}    ${browser}
+Test Teardown    Close Browser
+
+
+*** Test Cases ***
+TC2045 Add -1 To Basket
+    Add A Number Of Items To Basket    -1
+    Verify Basket Content    1
+    
+TC2046 Add 0 To Basket
+    Add A Number Of Items To Basket    0
+    Verify Basket Content    1
+    
+TC2047 Add 1 To Basket
+    Add A Number Of Items To Basket    1
+    Verify Basket Content    1
+    
+TC2048 Add 2.5 To Basket
+    Add A Number Of Items To Basket    2.5
+    Verify Basket Content    2
+    
+TC2049 Add 9999 To Basket
+    Add A Number Of Items To Basket    9999
+    Verify Basket Content    ${EMPTY}
+    
+TC2050 Add 10000 To Basket
+    Add A Number Of Items To Basket    10000
+    Verify Basket Content    ${EMPTY}
+    
+TC2051 Add 10001 To Basket
+    Add A Number Of Items To Basket    10001
+    Verify Basket Content    ${EMPTY}
+
+TC2053 Remove Item From Basket
+    Add A Number Of Items To Basket    3
+    Open Mini Cart Summary
+    Click Element    ${firstRemoveButtonInMiniCartCss}
+    Wait Until Element Is Visible    ${notificationBarCss}
+    Element Text Should Be    ${miniCartCountCss}    0
+
+TC2054 Reduce Amount From Basket
+    Add A Number Of Items To Basket    3
+    Open Mini Cart Summary
+    Click Element    ${firstReduceQuantityButtonInMiniCartCss}
+    Wait Until Element Is Visible    ${curtainCss}
+    Wait Until Element Is Not Visible    ${curtainCss}
+    Element Text Should Be    ${miniCartCountCss}    2
