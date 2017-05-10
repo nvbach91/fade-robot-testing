@@ -17,12 +17,12 @@ git clone https://github.com/nvbach91/fade-robot-testing.git
 
 * Run a test
 ```{r, engine='sh'}
-robot .\Tests\TC01.txt
+robot --outputdir .\Results .\Tests\TC01.txt
 ```
 
 * Run all tests
 ```{r, engine='sh'}
-robot .\Tests
+robot --outputdir .\Results .\Tests
 ```
 
 ### Code convention
