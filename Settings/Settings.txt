@@ -4,7 +4,7 @@ ${url}    https://www.fade.cz
 ${browser}    chrome
 ${enterKey}    \\13
 ${maxPageProducts}    24
-@{loginAtStart}    false    true
+@{loginAtStart}    false
 ${res}    true
 ${width}    1920
 ${height}     1080

@@ -2,7 +2,8 @@
 ${addtobasketbtn}    xpath=//*[@id="basketButton"]
 ${addtobasketbtnen}    ADD TO BASKET
 ${addtobasketbtntxt}    DO KO\u0160\u00CDKU
-${article1}    xpath=//*[@id="product-0"]/div[1]/div/article[1]/div
+${article1}    css=#product-0 article:first-child .product-inner img
+#xpath=//*[@id="product-0"]/div[1]/div/article[1]/div
 ${czktxt}    K\u010D
 ${eurtxt}    \u20AC
 ${footer}    xpath=//*[@id="bottom"]/div/div[1]
@@ -17,7 +18,9 @@ ${productcost}    xpath=//*[@id="detailInfo"]/div[2]/div[2]
 ${productcolors}    xpath=//*[@id="detailInfo"]/div[4]/div[1]
 ${productsizes}    xpath=//*[@id="detailInfo"]/div[4]/div[2]
 ${productavailability}    id=availability
-${productdescription}    xpath=//*[@id="accordion"]/div/div[1]/a
+${productdescription}    css=#accordion > .panel > .panel-heading:first-child > a
+#xpath=//*[@id="accordion"]/div/div[1]/a
+
 ${productdelivery}    xpath=//*[@id="accordion"]/div/div[3]/a
 ${productdetails}    id=pDesc
 ${productsize2}    xpath=//*[@id="size"]/li[2]/a

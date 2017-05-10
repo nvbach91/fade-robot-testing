@@ -7,7 +7,7 @@ Test Setup    Open Page    ${url}    ${browser}
 Test Teardown    Close Browser
 
 *** Variables ***
-${searchTerm}    Sve
+${searchTerm}    BATOH
 
 *** Test Cases ***
 TC2010 Search Autocomplete Test

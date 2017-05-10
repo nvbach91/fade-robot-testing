@@ -2,6 +2,7 @@
 Library    Selenium2Library
 Resource    ../Settings/Settings.txt
 Resource    ../PageObjects/Elements.txt
+Resource    ../PageObjects/Basket.txt
 Resource    ../PageObjects/ProductDet.txt
 Resource    ../Keywords/Global.txt
 Test Teardown    Close All Browsers
@@ -20,10 +21,12 @@ TC2039 Recommended
 
 TC2040 Product Language Version
     Run with browser     Product Language Version    ${url}    @{browsers}
-
+    
 TC2068 Back To Top Arrow
     Run with browser     Back To Top Arrow    ${url}    @{browsers}
 
+*** Variables ***
+${nvbBreadCrumbWaitFixCss}    css=#middle
 
 *** Keywords ***
 Product detail
@@ -31,8 +34,10 @@ Product detail
     Open Page David    ${url}    ${browser}    ${login}
     Mouse Over    ${obleceni}
     Page Navigation     ${kosile}    ${kosilebc}    ${timeout}
+    Wait Until Page Contains Element    ${productContainerCss}
     Click Element    ${article1}
-    Wait Until Page Contains Element    ${productlevel}[contains(@class, '${active}')]    ${timeout}
+#   ${productlevel}[contains(@class, '${active}')]    ${timeout}
+    Wait Until Page Contains Element    ${nvbBreadCrumbWaitFixCss}
     Element Should Not Be Visible    ${productdetails}
     Element Should Be Visible    ${productdescription}
     Element Toggle On    ${productdescription}    ${productdetails}    ${timeout}
@@ -60,7 +65,8 @@ Pricetag Currency Version
     Mouse Over    ${obleceni}
     Page Navigation    ${kosile}    ${kosilebc}    ${timeout}
     Click Element    ${article1}
-    Wait Until Page Contains Element    ${productlevel}[contains(@class, '${active}')]    ${timeout}
+#   ${productlevel}[contains(@class, '${active}')]    ${timeout}
+    Wait Until Page Contains Element    ${nvbBreadCrumbWaitFixCss}
     Click Element    ${eur}
     Wait Until Page Contains Element    ${eur}[contains(@class, '${active}')]    ${timeout}
     Wait Until Element contains    ${productcost}    ${eurtxt}    ${timeout}
@@ -89,7 +95,8 @@ Product Language Version
     Mouse Over    ${obleceni}
     Page Navigation    ${kosile}    ${kosilebc}    ${timeout}
     Click Element    ${article1}
-    Wait Until Page Contains Element    ${productlevel}[contains(@class, '${active}')]    ${timeout}
+#   ${productlevel}[contains(@class, '${active}')]    ${timeout}
+    Wait Until Page Contains Element    ${nvbBreadCrumbWaitFixCss}
     Element Should Contain    ${addtobasketbtn}    ${addtobasketbtntxt}
     Click Element    ${langen}
     Click Element    ${langen}
@@ -108,6 +115,7 @@ Back To Top Arrow
     Mouse Over    ${obleceni}
     Page Navigation    ${kosile}    ${kosilebc}    ${timeout}
     Click Element    ${article1}
-    Wait Until Page Contains Element    ${productlevel}[contains(@class, '${active}')]    ${timeout}
+#   ${productlevel}[contains(@class, '${active}')]    ${timeout}
+    Wait Until Page Contains Element    ${nvbBreadCrumbWaitFixCss}
     Mouse Over    ${footer}
     Wait Until Element Is Visible    ${scrolltotop}    ${timeout}
