@@ -1,0 +1,42 @@
+*** Settings ***
+Library    Selenium2Library
+Resource    ../Settings/Settings.txt
+Resource    ../PageObjects/Elements.txt
+Resource    ../PageObjects/ProductAva.txt
+Resource    ../Keywords/Global.txt
+Test Teardown    Close All Browsers
+
+*** Variables ***
+
+*** Test Cases ***
+TC2030 Product availability
+    Run with browser    Product availability    ${url}    @{browsers}
+
+TC2031 Product availability without size
+    Run with browser     Product availability without size    ${url}    @{browsers}
+
+*** Variables ***
+${nvbBreadCrumbWaitFixCss}    css=#middle
+
+*** Keywords ***
+Product availability 
+    [Arguments]    ${url}    ${browser}    ${login}
+    Open Page David    ${url}    ${browser}    ${login}
+    Mouse Over    ${obleceni}
+    Page Navigation     ${kosile}    ${kosilebc}    ${timeout}
+    Click Element    ${article1}
+    Wait Until Page Contains Element    ${nvbBreadCrumbWaitFixCss}    ${timeout}
+    Click Element    ${productsize2}
+    Click Element    ${productavailability}
+    Wait Until Page Contains Element  ${productavailabilitypage} 
+   
+Product availability without size
+    [Arguments]    ${url}    ${browser}    ${login} 
+    Open Page David    ${url}    ${browser}    ${login}
+    Mouse Over    ${obleceni}
+    Page Navigation     ${kosile}    ${kosilebc}    ${timeout}
+    Click Element    ${article1}
+    Wait Until Page Contains Element    ${nvbBreadCrumbWaitFixCss}    ${timeout}
+    Click Element    ${productavailability}
+    Wait Until Element Is Not Visible    ${productavailabilitypage} 
+   

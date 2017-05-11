@@ -2,25 +2,31 @@
 Library    Selenium2Library
 Resource    ../Settings/Settings.txt
 Resource    ../PageObjects/Search_Elements.txt
+Resource    ../PageObjects/Basket.txt
 Resource    ../Keywords/Global.txt
 Test Setup    Open Page    ${url}    ${browser}
 Test Teardown    Close Browser
 
 *** Variables ***
 ${searchTerm}    kabelka
-${productLink}   https://www.fade.cz/woman/kabelky/v-tsi-kabelky/bobbi-shopper
-${size}    T/U   
+${productLink}    https://www.fade.cz/woman/kabelky/v-tsi-kabelky/bobbi-shopper
+${size}    T/U
+${billingAddressSelect}    id=billing-address-select
+${iHaveAccountButton}    id=loginFrmDlgO
+${deliveryOption}    css=#checkout-shipping-method-load label[for='s_method_flatrate5_flatrate5']
+${cashOnDeliveryOption}    css=#checkout-shipping-method-load label[for='p_method_msp_cashondelivery']
+${paymentOption}    css=#paymentContainer
 
 *** Test Cases ***
 TC2061 Login from Cart
     Add To Cart    ${searchTerm}    ${productLink}    ${size}
-    Wait Until Element Is Not Visible    osc-loader
-    Click Element    xpath=//label[@for='s_method_flatrate5_flatrate5']
-    Wait Until Element Is Not Visible    osc-loader
-    Click Element    xpath=//label[@for='p_method_msp_cashondelivery']
-    Wait Until Element Is Not Visible    osc-loader
-    Click Element    loginFrmDlgO
+    Wait Until Element Is Not Visible    ${curtainCss}
+    Click Element    ${deliveryOption}
+    Wait Until Element Is Not Visible    ${oscLoader}
+    Click Element    ${cashOnDeliveryOption}
+    Wait Until Element Is Not Visible    ${oscLoader}
+    Click Element    ${iHaveAccountButton}
     Wait Until Element Is Visible    loginFrm
     Login From Cart
-    Wait Until Element Is Visible    billing-address-select
-    Page Should Contain Element    billing-address-select    
+    Wait Until Element Is Visible    ${billingAddressSelect}    timeout=10
+    Page Should Contain Element    ${billingAddressSelect}

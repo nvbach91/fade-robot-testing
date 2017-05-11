@@ -36,7 +36,7 @@ Max Products On Page
     Xpath Should Match X Times    ${searchedProduct}    ${maxPageProducts}
 
 Loading Filter
-    Wait Until Element Is Not Visible    ${loadingFilter}	timeout=5
+    Wait Until Element Is Not Visible    ${loadingFilter}	timeout=10
 
 Get Product Count
     ${count}=    Get Matching Xpath Count    ${searchedProduct}

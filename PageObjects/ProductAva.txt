@@ -1,0 +1,8 @@
+*** Variables ***
+${article1}    css=#product-0 article:first-child .product-inner img
+${kosile}    xpath=//*[@id="menub-woman"]/ul/li[2]/ul/div[1]/li[4]/a
+${kosilebc}    xpath=//*[@id="mainwrapper"]/main/ol/li[5]
+${obleceni}    xpath=//*[@id="menub-woman"]/ul/li[2]/a
+${productavailability}    id=availability
+${productsize2}    xpath=//*[@id="size"]/li[2]/a
+${productavailabilitypage}   xpath=//div[@id="dostupnostModal"]

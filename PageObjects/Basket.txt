@@ -19,3 +19,4 @@ ${firstInputQuantityInMiniCartCss}    ${miniCartSummaryCss} > li:first-child inp
 ${curtainCss}    css=#load_animate
 ${miniCartTotalCss}    css=#mini-cart-total
 ${itemUnitPriceCss}    css=#detailInfo .price
+${oscLoader}    css=#osc-loader
